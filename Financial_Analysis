@@ -1,1 +1,23 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.read_csv('/content/Fin_Analysis.csv')
+df.head()
+df.columns
+
+df['Revenue Growth(%)'] = df.groupby(['Company'])['Total Revenue'].pct_change()*100
+df['Net Income Growth (%)'] = df.groupby(['Company'])['Net Income'].pct_change()* 100
+
+
+# Profitability Index
+df['Profitability Index'] = df['Net Income'] / df['Total Revenue']
+
+# Asset Turnover
+df['Asset Turnover'] = df['Total Revenue'] / df['Total Assets']
+
+df.head(10)
+print("\n Financial Analysis Insights:")
+print("Tesla experienced exceptional revenue growth exceeding 50% in 2022, which declined to 19% in 2023. \nSimilarly, Apple and Microsoft also saw a decline in revenue growth in 2023. \nHowever, Microsoft demonstrated a higher profitability index compared to Apple and Tesla.")
 
